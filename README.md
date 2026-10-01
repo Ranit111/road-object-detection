@@ -1,6 +1,21 @@
 # Smart Road Scene Analyzer (Advanced Edition)
 
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/deploy?repository=Ranit111/road-object-detection&branch=main&mainModule=app.py)
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Ranit111%2Froad--object--detection-blue?logo=github)](https://github.com/Ranit111/road-object-detection)
+
 A high-accuracy, practical computer-vision application for road traffic analysis. It integrates **Ultralytics YOLO (Nano, Small, Medium, or Custom Weights)**, **High-Resolution Inference (1280px)**, **Temporal Tracking Persistence Filtering**, **Road Region of Interest (ROI) Masking**, vehicle and pedestrian counting, traffic density classification, and comprehensive CSV/video downloads.
+
+---
+
+## 🚀 Instant 1-Click Streamlit Cloud Deployment
+Click the badge below to deploy this repository directly to Streamlit Community Cloud:
+
+👉 **[Deploy to Streamlit Cloud](https://share.streamlit.io/deploy?repository=Ranit111/road-object-detection&branch=main&mainModule=app.py)**
+
+- **Permanent URL:** `https://road-object-detection.streamlit.app` (or custom name)
+- **Repo:** `Ranit111/road-object-detection`
+- **Main file:** `app.py`
+- **Branch:** `main`
 
 ---
 
