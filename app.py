@@ -49,59 +49,151 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Custom minimal CSS matching DESIGN.md: clean, light neutral, dark text, subtle accent
-st.markdown(
-    """
-    <style>
-    /* Hide Streamlit dev branding, toolbar and footer for clean public UI */
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    .stDeployButton {display: none !important;}
-    [data-testid="stToolbar"] {display: none !important;}
-    
-    .main {
-        background-color: #FAFAFA;
-        color: #1F2937;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    }
-    .metric-card {
-        background-color: #FFFFFF;
-        border: 1px solid #E5E7EB;
-        border-radius: 8px;
-        padding: 16px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        margin-bottom: 12px;
-    }
-    .metric-title {
-        font-size: 13px;
-        color: #6B7280;
-        font-weight: 500;
-        margin-bottom: 4px;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-    }
-    .metric-value {
-        font-size: 26px;
-        font-weight: 700;
-        color: #111827;
-    }
-    .density-badge {
-        display: inline-block;
-        padding: 4px 12px;
-        border-radius: 6px;
-        font-weight: 600;
-        font-size: 14px;
-        color: #FFFFFF;
-    }
-    .status-note {
-        font-size: 12px;
-        color: #6B7280;
-        margin-top: 4px;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+def apply_theme(theme: str) -> None:
+    """Inject responsive dynamic CSS for Light and Dark themes."""
+    if theme == "Dark":
+        css = """
+        <style>
+        /* Dark Theme Global */
+        .stApp {
+            background-color: #0E1117 !important;
+            color: #E6EDF3 !important;
+        }
+        [data-testid="stSidebar"] {
+            background-color: #161B22 !important;
+            border-right: 1px solid #30363D !important;
+        }
+        [data-testid="stSidebar"] h1, [data-testid="stSidebar"] h2, 
+        [data-testid="stSidebar"] h3, [data-testid="stSidebar"] p, 
+        [data-testid="stSidebar"] label, [data-testid="stSidebar"] span {
+            color: #E6EDF3 !important;
+        }
+        .main {
+            background-color: #0E1117 !important;
+            color: #E6EDF3 !important;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #F0F6FC !important;
+        }
+        p, span, label {
+            color: #C9D1D9 !important;
+        }
+        .metric-card {
+            background-color: #161B22 !important;
+            border: 1px solid #30363D !important;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+            margin-bottom: 12px;
+        }
+        .metric-title {
+            font-size: 13px;
+            color: #8B949E !important;
+            font-weight: 500;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .metric-value {
+            font-size: 26px;
+            font-weight: 700;
+            color: #58A6FF !important;
+        }
+        .status-note {
+            font-size: 12px;
+            color: #8B949E !important;
+            margin-top: 4px;
+        }
+        /* Uploader styling in Dark */
+        [data-testid="stFileUploader"] {
+            background-color: #161B22;
+            border-radius: 8px;
+            padding: 8px;
+        }
+        /* Shared clean elements */
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        .stDeployButton {display: none !important;}
+        [data-testid="stToolbar"] {display: none !important;}
+        .density-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #FFFFFF !important;
+        }
+        </style>
+        """
+    else:
+        css = """
+        <style>
+        /* Light Theme Global */
+        .stApp {
+            background-color: #FAFAFA !important;
+            color: #1F2937 !important;
+        }
+        [data-testid="stSidebar"] {
+            background-color: #F3F4F6 !important;
+            border-right: 1px solid #E5E7EB !important;
+        }
+        [data-testid="stSidebar"] h1, [data-testid="stSidebar"] h2, 
+        [data-testid="stSidebar"] h3, [data-testid="stSidebar"] p, 
+        [data-testid="stSidebar"] label, [data-testid="stSidebar"] span {
+            color: #1F2937 !important;
+        }
+        .main {
+            background-color: #FAFAFA !important;
+            color: #1F2937 !important;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #111827 !important;
+        }
+        p, span, label {
+            color: #374151 !important;
+        }
+        .metric-card {
+            background-color: #FFFFFF !important;
+            border: 1px solid #E5E7EB !important;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            margin-bottom: 12px;
+        }
+        .metric-title {
+            font-size: 13px;
+            color: #6B7280 !important;
+            font-weight: 500;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .metric-value {
+            font-size: 26px;
+            font-weight: 700;
+            color: #2563EB !important;
+        }
+        .status-note {
+            font-size: 12px;
+            color: #6B7280 !important;
+            margin-top: 4px;
+        }
+        /* Shared clean elements */
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        .stDeployButton {display: none !important;}
+        [data-testid="stToolbar"] {display: none !important;}
+        .density-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #FFFFFF !important;
+        }
+        </style>
+        """
+    st.markdown(css, unsafe_allow_html=True)
 
 
 @st.cache_resource(show_spinner="Loading YOLO model weights...")
@@ -111,12 +203,21 @@ def get_detector(model_target: str) -> RoadObjectDetector:
 
 
 def main():
-    # Header
-    st.title("Smart Road Scene Analyzer")
-    st.caption("YOLO road scene object detection, counting, and traffic density analysis.")
-
     # Sidebar: configuration & controls
     with st.sidebar:
+        st.subheader("🎨 Appearance")
+        theme_choice = st.radio(
+            "Theme Mode",
+            ["🌙 Dark Mode", "☀️ Light Mode"],
+            index=0 if st.session_state.get("theme", "Dark") == "Dark" else 1,
+            horizontal=True,
+            key="theme_radio",
+            label_visibility="collapsed",
+        )
+        selected_theme = "Dark" if "Dark" in theme_choice else "Light"
+        st.session_state["theme"] = selected_theme
+
+        st.markdown("---")
         st.subheader("Controls & Settings")
 
         app_mode = st.radio(
@@ -125,6 +226,14 @@ def main():
             index=0,
         )
 
+    # Apply selected theme dynamically
+    apply_theme(st.session_state["theme"])
+
+    # Header
+    st.title("Smart Road Scene Analyzer")
+    st.caption("YOLO road scene object detection, counting, and traffic density analysis.")
+
+    with st.sidebar:
         # High resolution standard (1280px) preset in backend for all modes
         imgsz = DEFAULT_INFERENCE_SIZE
 
