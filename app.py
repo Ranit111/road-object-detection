@@ -161,7 +161,10 @@ def apply_theme(theme: str) -> None:
         #MainMenu {visibility: hidden;}
         footer {visibility: hidden;}
         .stDeployButton {display: none !important;}
-        [data-testid="stToolbar"] {display: none !important;}
+        [data-testid="stSidebarCollapsedControl"], [data-testid="stExpandSidebarButton"] {
+            display: flex !important;
+            visibility: visible !important;
+        }
         .density-badge {
             display: inline-block;
             padding: 4px 12px;
@@ -278,7 +281,10 @@ def apply_theme(theme: str) -> None:
         #MainMenu {visibility: hidden;}
         footer {visibility: hidden;}
         .stDeployButton {display: none !important;}
-        [data-testid="stToolbar"] {display: none !important;}
+        [data-testid="stSidebarCollapsedControl"], [data-testid="stExpandSidebarButton"] {
+            display: flex !important;
+            visibility: visible !important;
+        }
         .density-badge {
             display: inline-block;
             padding: 4px 12px;
