@@ -104,12 +104,59 @@ def apply_theme(theme: str) -> None:
             color: #8B949E !important;
             margin-top: 4px;
         }
-        /* Uploader styling in Dark */
+
+        /* File Uploader Dropzone in Dark */
         [data-testid="stFileUploader"] {
-            background-color: #161B22;
-            border-radius: 8px;
-            padding: 8px;
+            background-color: transparent !important;
         }
+        [data-testid="stFileUploaderDropzone"] {
+            background-color: #161B22 !important;
+            border: 1px dashed #30363D !important;
+            border-radius: 8px !important;
+        }
+        [data-testid="stFileUploaderDropzone"] * {
+            color: #C9D1D9 !important;
+        }
+        [data-testid="stFileUploaderDropzone"] [data-testid="stBaseButton-secondary"] {
+            background-color: #21262D !important;
+            border: 1px solid #30363D !important;
+            color: #F0F6FC !important;
+        }
+        [data-testid="stFileUploaderDropzone"] [data-testid="stBaseButton-secondary"]:hover {
+            background-color: #30363D !important;
+            border-color: #8B949E !important;
+        }
+
+        /* Multiselect & Selectbox (BaseWeb & React-Aria) in Dark */
+        [data-testid="stMultiSelect"] div[role="group"],
+        [data-testid="stSelectbox"] div[role="group"],
+        div[data-baseweb="select"] > div,
+        div[role="combobox"] {
+            background-color: #161B22 !important;
+            border: 1px solid #30363D !important;
+            color: #F0F6FC !important;
+        }
+        [data-testid="stMultiSelect"] svg,
+        [data-testid="stSelectbox"] svg {
+            fill: #C9D1D9 !important;
+        }
+
+        /* Tooltip icons */
+        [data-testid="stTooltipIcon"] svg {
+            fill: #8B949E !important;
+            color: #8B949E !important;
+        }
+
+        /* Alerts & Info boxes */
+        [data-testid="stAlert"] {
+            background-color: #161B22 !important;
+            border: 1px solid #30363D !important;
+            color: #C9D1D9 !important;
+        }
+        [data-testid="stAlert"] * {
+            color: #C9D1D9 !important;
+        }
+
         /* Shared clean elements */
         #MainMenu {visibility: hidden;}
         footer {visibility: hidden;}
@@ -178,6 +225,55 @@ def apply_theme(theme: str) -> None:
             color: #6B7280 !important;
             margin-top: 4px;
         }
+
+        /* File Uploader Dropzone in Light */
+        [data-testid="stFileUploader"] {
+            background-color: transparent !important;
+        }
+        [data-testid="stFileUploaderDropzone"] {
+            background-color: #FFFFFF !important;
+            border: 1px dashed #D1D5DB !important;
+            border-radius: 8px !important;
+        }
+        [data-testid="stFileUploaderDropzone"] * {
+            color: #374151 !important;
+        }
+        [data-testid="stFileUploaderDropzone"] [data-testid="stBaseButton-secondary"] {
+            background-color: #F9FAFB !important;
+            border: 1px solid #D1D5DB !important;
+            color: #111827 !important;
+        }
+
+        /* Multiselect & Selectbox in Light */
+        [data-testid="stMultiSelect"] div[role="group"],
+        [data-testid="stSelectbox"] div[role="group"],
+        div[data-baseweb="select"] > div,
+        div[role="combobox"] {
+            background-color: #FFFFFF !important;
+            border: 1px solid #D1D5DB !important;
+            color: #111827 !important;
+        }
+        [data-testid="stMultiSelect"] svg,
+        [data-testid="stSelectbox"] svg {
+            fill: #4B5563 !important;
+        }
+
+        /* Tooltip icons */
+        [data-testid="stTooltipIcon"] svg {
+            fill: #6B7280 !important;
+            color: #6B7280 !important;
+        }
+
+        /* Alerts & Info boxes */
+        [data-testid="stAlert"] {
+            background-color: #EFF6FF !important;
+            border: 1px solid #BFDBFE !important;
+            color: #1E40AF !important;
+        }
+        [data-testid="stAlert"] * {
+            color: #1E40AF !important;
+        }
+
         /* Shared clean elements */
         #MainMenu {visibility: hidden;}
         footer {visibility: hidden;}
