@@ -53,6 +53,12 @@ st.set_page_config(
 st.markdown(
     """
     <style>
+    /* Hide Streamlit dev branding, toolbar and footer for clean public UI */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    .stDeployButton {display: none !important;}
+    [data-testid="stToolbar"] {display: none !important;}
+    
     .main {
         background-color: #FAFAFA;
         color: #1F2937;
