@@ -16,8 +16,8 @@ VIDEO_MODELS: Dict[str, str] = {
     "YOLOv8m (High Accuracy)": "yolov8m.pt",
 }
 
-# Inference Resolution (1280px High-Res standard for deep road detection)
-DEFAULT_INFERENCE_SIZE = 1280
+# Inference Resolution (640px native YOLOv8 standard for optimal receptive field & speed)
+DEFAULT_INFERENCE_SIZE = 640
 
 # Backend Video Processing Defaults (Fast CCTV default without UI slider)
 DEFAULT_FRAME_STRIDE = 2

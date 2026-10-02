@@ -28,7 +28,8 @@ def test_real_image_detection_pipeline():
     assert len(detections) > 0
 
     detected_classes = {d["class_name"] for d in detections}
-    assert any(c in detected_classes for c in ["bus", "car", "person"])
+    assert "bus" in detected_classes, f"Bus was expected in detections, got: {detected_classes}"
+    assert "person" in detected_classes, f"Person was expected in detections, got: {detected_classes}"
 
     # Verify confidence and coordinates are valid
     for d in detections:

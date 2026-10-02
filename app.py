@@ -336,7 +336,7 @@ def main():
     st.caption("YOLO road scene object detection, counting, and traffic density analysis.")
 
     with st.sidebar:
-        # High resolution standard (1280px) preset in backend for all modes
+        # Standard native YOLO resolution (640px) for optimal receptive field & fast inference
         imgsz = DEFAULT_INFERENCE_SIZE
 
         # Model configuration per mode
