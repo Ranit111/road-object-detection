@@ -1,6 +1,6 @@
 # Smart Road Scene Analyzer
 
-[![Live App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ranit111-road-object-detection-app-khmkmr.streamlit.app)
+[![Live App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://road-object-detection.streamlit.app/)
 [![GitHub Repository](https://img.shields.io/badge/GitHub-Ranit111%2Froad--object--detection-blue?logo=github)](https://github.com/Ranit111/road-object-detection)
 
 A high-performance computer vision web application for intelligent road traffic analysis, vehicle counting, and traffic density estimation using **Ultralytics YOLOv8** and **Streamlit**.
@@ -9,7 +9,7 @@ A high-performance computer vision web application for intelligent road traffic 
 
 ## 🌐 Live Application
 Access the deployed application directly in your browser:
-👉 **[https://ranit111-road-object-detection-app-khmkmr.streamlit.app](https://ranit111-road-object-detection-app-khmkmr.streamlit.app)**
+👉 **[https://road-object-detection.streamlit.app/](https://road-object-detection.streamlit.app/)**
 
 ---
 
