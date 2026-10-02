@@ -409,7 +409,7 @@ def main():
         selected_classes = st.multiselect(
             "Filter Object Classes",
             options=all_class_names,
-            default=["car", "person"],
+            default=all_class_names,
             help="Select which road object categories to detect and count.",
         )
         st.caption("🔍 False-positive filters: Car ≥ 0.50 | Person ≥ 0.45 | Min-size & NMS active")
