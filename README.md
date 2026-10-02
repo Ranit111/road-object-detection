@@ -1,114 +1,89 @@
-# Smart Road Scene Analyzer (Advanced Edition)
+# Smart Road Scene Analyzer
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/deploy?repository=Ranit111/road-object-detection&branch=main&mainModule=app.py)
+[![Live App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ranit111-road-object-detection-app-khmkmr.streamlit.app)
 [![GitHub Repository](https://img.shields.io/badge/GitHub-Ranit111%2Froad--object--detection-blue?logo=github)](https://github.com/Ranit111/road-object-detection)
 
-A high-accuracy, practical computer-vision application for road traffic analysis. It integrates **Ultralytics YOLO (Nano, Small, Medium, or Custom Weights)**, **High-Resolution Inference (1280px)**, **Temporal Tracking Persistence Filtering**, **Road Region of Interest (ROI) Masking**, vehicle and pedestrian counting, traffic density classification, and comprehensive CSV/video downloads.
+A high-performance computer vision web application for intelligent road traffic analysis, vehicle counting, and traffic density estimation using **Ultralytics YOLOv8** and **Streamlit**.
 
 ---
 
-## 🚀 Instant 1-Click Streamlit Cloud Deployment
-Click the badge below to deploy this repository directly to Streamlit Community Cloud:
-
-👉 **[Deploy to Streamlit Cloud](https://share.streamlit.io/deploy?repository=Ranit111/road-object-detection&branch=main&mainModule=app.py)**
-
-- **Permanent URL:** `https://road-object-detection.streamlit.app` (or custom name)
-- **Repo:** `Ranit111/road-object-detection`
-- **Main file:** `app.py`
-- **Branch:** `main`
+## 🌐 Live Application
+Access the deployed application directly in your browser:
+👉 **[https://ranit111-road-object-detection-app-khmkmr.streamlit.app](https://ranit111-road-object-detection-app-khmkmr.streamlit.app)**
 
 ---
 
-## 🌟 Advanced Features
+## 🌟 Key Features
 
-1. **Model Architecture Scaling**:
-   - **`yolov8n.pt` (Nano)**: Ultra-fast, ideal for low-power CPUs.
-   - **`yolov8s.pt` (Small)**: Recommended default — delivers **+20% to +30% mAP accuracy boost** while maintaining high FPS.
-   - **`yolov8m.pt` (Medium)**: High precision for dense, complex traffic intersections.
-   - **Custom Weights (`.pt`)**: Support for fine-tuned weights (e.g. models trained on Kaggle/Roboflow road traffic datasets with rickshaws, auto-rickshaws, vans, etc.).
+1. **Multi-Class Road Object Detection**:
+   - Detects and categorizes road participants: **cars, buses, trucks, motorcycles, bicycles, and pedestrians**.
+   - Dual theme support (**Dark Mode & Light Mode**) with clear bounding box visualization.
 
-2. **High-Resolution Inference (`imgsz=1280`)**:
-   - Easily toggle between `Standard (640px)` and `High-Res (1280px)` to catch small, distant bicycles, pedestrians, or vehicles far down the road without missing detections.
+2. **Model Variants & Accuracy Scaling**:
+   - **`yolov8n.pt` (Nano)**: Optimized for fast, low-latency execution.
+   - **`yolov8m.pt` (Medium)**: Enhanced precision for dense, complex traffic intersections.
 
 3. **Temporal Tracking Persistence Filter (Video)**:
-   - Configurable persistence filter (default: `3 frames`).
-   - A detected object is only confirmed and displayed after its track ID persists across at least N frames.
-   - **Instantly eliminates 1–2 frame flickering false positives** caused by road asphalt shadows, manhole reflections, or sunlight glare.
+   - Integrates multi-object tracking (ByteTrack) with configurable frame persistence.
+   - Filters out temporary flickering false positives (e.g. road shadows, manhole reflections).
 
 4. **Road Region of Interest (ROI) Masking**:
-   - Road scene photos often contain 25–40% sky, clouds, tree tops, and tall building roofs.
-   - Toggle Road ROI to exclude the top horizon zone (configurable 10%–50% cutoff), focusing inference strictly on the road asphalt.
+   - Excludes sky, clouds, and building roofs to focus inference specifically on asphalt and traffic lanes.
+   - Configurable vertical horizon and side margin cutoffs.
 
-5. **False-Positive Elimination Engine**:
-   - Class-specific thresholds (`car`: 0.50, `person`: 0.45, `motorcycle`: 0.45, etc.).
-   - Minimum bounding box size filtering (`width >= 20px`, `height >= 20px`, `area >= 400px²`).
-   - Aspect ratio geometry constraints to reject vertical street poles (`aspect < 0.15`) and horizontal lane markings (`aspect > 4.5`).
-   - Secondary Post-NMS and containment suppression to remove duplicate or nested boxes.
-
-6. **Traffic Density Estimation**:
+5. **Traffic Density Estimation**:
    - 🟢 **Low**: 0 to 3 vehicles (smooth, free-flowing traffic)
    - 🟡 **Medium**: 4 to 9 vehicles (moderate vehicle presence)
    - 🔴 **High**: 10+ vehicles (heavy congestion)
 
-7. **Export & Download Pipeline**:
+6. **Export & Analytics**:
    - Download annotated high-resolution images (`.jpg`).
-   - Download processed videos (`.mp4`).
-   - Download summary metrics and per-frame tracking time-series logs (`.csv`).
+   - Download processed videos with tracking IDs and annotations (`.mp4`).
+   - Export detailed detection metrics and per-frame logs (`.csv`).
 
 ---
 
-## 📁 Project Architecture
+## 📁 Project Structure
 
 ```
-ROAD OBJECT DETECTION/
-│
-├── ARCHITECTURE/               # Product, technical, design & agent specs
-│   ├── agent_instruction.md
-│   ├── design.md
-│   ├── prd.md
-│   └── trd.md
-│
+road-object-detection/
+├── .streamlit/
+│   └── config.toml            # Streamlit theme & UI styling configuration
 ├── models/
-│   ├── yolov8n.pt             # Cached YOLOv8n weights
-│   └── (yolov8s.pt / yolov8m.pt auto-downloaded on selection)
-│
-├── src/
-│   ├── __init__.py
-│   ├── config.py              # Class mappings, thresholds, ROI & scaling constants
-│   ├── detector.py            # YOLO inference, dynamic models, ROI & ByteTrack wrapper
-│   ├── traffic_analyzer.py    # Class counts & traffic density logic
-│   ├── video_processor.py     # Temporal persistence filter, video engine & FPS counter
-│   └── utils.py               # Bounding box drawing, ROI boundary overlay, CSV/image helpers
-│
+│   └── (YOLOv8 weights auto-downloaded & cached)
 ├── samples/
-│   ├── prepare_samples.py     # Script to generate/download test media
 │   ├── sample_road.jpg        # Demo road image
 │   └── sample_traffic.mp4     # Demo traffic video
-│
-├── tests/
-│   ├── test_detector.py       # Detection, ROI, size, and geometry unit tests
-│   ├── test_traffic_analyzer.py # Counting & traffic density tests
-│   ├── test_utils.py          # Annotation, coloring & CSV export tests
-│   ├── test_video_processor.py # Video engine & temporal persistence tests
-│   └── test_integration_e2e.py # Real YOLO end-to-end integration tests
-│
+├── src/
+│   ├── __init__.py
+│   ├── config.py              # Road classes, thresholds, ROI & scaling constants
+│   ├── detector.py            # YOLO inference, geometry filtering & NMS deduplication
+│   ├── traffic_analyzer.py    # Class counts & traffic density logic
+│   ├── video_processor.py     # Video tracking engine & temporal persistence filter
+│   └── utils.py               # Bounding box drawing, overlays & CSV export helpers
 ├── app.py                     # Streamlit web application
-├── requirements.txt           # Python dependencies
-└── README.md                  # Documentation and run instructions
+├── packages.txt               # System-level dependencies for Linux deployment
+├── requirements.txt           # Python library dependencies
+└── README.md                  # Project documentation
 ```
 
 ---
 
-## 🛠️ Quick Start
+## 🛠️ Quick Start (Local Setup)
 
-### 1. Launch the Dashboard
+### 1. Clone the Repository
+```bash
+git clone https://github.com/Ranit111/road-object-detection.git
+cd road-object-detection
+```
+
+### 2. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Launch the Application
 ```bash
 streamlit run app.py
 ```
-Open `http://localhost:8501` in your browser.
-
-### 2. Run All Automated Tests
-```bash
-pytest tests -v
-```
-*(All 21 unit and integration tests will execute and pass 100%.)*
+Open [http://localhost:8501](http://localhost:8501) in your browser.
